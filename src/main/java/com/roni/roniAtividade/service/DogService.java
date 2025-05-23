@@ -14,6 +14,9 @@ public class DogService {
     @Autowired
     private DogRepository dogRepository;
 
+    public DogService(DogRepository dogRepository) {
+        this.dogRepository = dogRepository;
+    }
 
     public List<Dog> getAllDogs(){
         return dogRepository.findAll();
