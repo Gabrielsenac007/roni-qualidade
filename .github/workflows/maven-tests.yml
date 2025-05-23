@@ -20,6 +20,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Limpar cache do mockito-inline (se existir)
+        run: rm -rf ~/.m2/repository/org/mockito/mockito-inline
+
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
@@ -28,5 +31,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Run tests with Java agent (mockito-inline)
-        run: mvn test -DargLine="-javaagent:${HOME}/.m2/repository/org/mockito/mockito-inline/5.2.0/mockito-inline-5.2.0.jar"
+      - name: Run tests
+        run: mvn test
